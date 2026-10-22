@@ -111,8 +111,7 @@ document.getElementById('adminReplyForm').addEventListener('submit',async e=>{e.
 
 document.getElementById('dailyReminder').checked=getStore(storeKeys.reminder,false);document.getElementById('dailyReminder').addEventListener('change',e=>{setStore(storeKeys.reminder,e.target.checked);document.getElementById('reminderStatus').textContent=e.target.checked?'Tercih bu cihazda kaydedildi; otomatik bildirim gönderilmiyor.':'Hatırlatma tercihi kapatıldı.'});
 function loadProfile(){let x=getStore(storeKeys.profile,{});document.getElementById('profileName').value=x.name||'';document.getElementById('profileNote').value=x.note||'';document.getElementById('profileIdentity').textContent=window.currentUserEmail?'Giriş yapan hesap: '+window.currentUserEmail:'Üyelik hesabı girişinden sonra e-posta bilgisi burada gösterilir.'}
-
-renderFavorites();loadProfile();
+renderFavorites();
 document.getElementById('year').textContent=new Date().getFullYear();
 try{if(window.supabase?.createClient){client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});client.auth.getSession().then(({data,error})=>{if(error)msg(error.message,'error');session(data?.session||null)});client.auth.onAuthStateChange((_e,s)=>session(s))}else msg('Üyelik kütüphanesi yüklenemedi. İnternet bağlantını kontrol et.','error')}catch(e){msg('Üyelik başlatılamadı. Supabase adresi ve public anahtarı kontrol edilmeli.','error')}
 </script></body></html>
