@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#160d20">
+<title>Ay Işığı | Fal ve Niyet Dünyası</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#160d20;--panel:#281a32;--gold:#efd18a;--pink:#e7a9ce;--text:#fff5e5;--muted:#cbbbd2;--line:#60466b}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#50305c,var(--bg) 65%);color:var(--text);font-family:Georgia,serif}
+header{position:sticky;top:0;background:#160d20ee;border-bottom:1px solid var(--line);padding:15px;z-index:5}
+nav{max-width:1000px;margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.logo{font-size:23px;color:var(--gold);font-weight:bold}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+main{max-width:1000px;margin:auto;padding:20px}
+.hero{text-align:center;padding:38px 12px}
+h1{font-size:clamp(32px,7vw,54px);color:var(--gold);margin:12px 0}
+h2{color:var(--gold);font-size:23px}
+p{line-height:1.65}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.card{background:#281a32eF;border:1px solid var(--line);border-radius:17px;padding:20px;margin-bottom:16px}
+button,.button{background:linear-gradient(135deg,#efd18a,#c99555);color:#241329;border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:pointer;font-size:15px}
+button.secondary{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+input,select,textarea{width:100%;padding:12px;margin:6px 0 13px;background:#160d20;color:var(--text);border:1px solid var(--line);border-radius:9px;font:inherit}
+textarea{min-height:100px;resize:vertical}
+label{font-size:14px;color:var(--muted)}
+.result{padding:15px;background:#160d20;border-radius:10px;border-left:3px solid var(--gold);margin-top:12px;white-space:pre-wrap;line-height:1.7}
+.hidden{display:none!important}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+footer{text-align:center;color:var(--muted);padding:30px 15px;border-top:1px solid var(--line);margin-top:30px}
+small{color:var(--muted)}
+</style>
+</head>
+<body>
+<header><nav>
+<div class="logo">☾ Ay Işığı</div>
+<a href="#fallar">Fallara Bak</a>
+<a href="#niyet">Niyet</a>
+<a href="#uyelik">Üyelik</a>
+<a href="#mesajlar">Mesajlar</a>
+</nav></header>
 
+<main>
+<section class="hero">
+<div style="font-size:42px">☾ ✧ ✦ ✧ ☽</div>
+<h1>Ay Işığı</h1>
+<p>Kalbinin sesini dinle, sembollerin dünyasını keşfet.</p>
+<p class="muted">Tarot · Burçlar · Rüya yorumları · Numeroloji · Niyet</p>
+<a class="button" href="#fallar">Keşfet ✨</a>
+</section>
+
+<section id="fallar">
+<h2>✧ Fal ve yorum köşesi</h2>
+<div class="grid">
+<div class="card">
+<h3>🃏 Tarot kartı</h3>
+<p class="muted">Bir kart seç ve sembolik mesajını oku.</p>
+<button onclick="tarot()">Kartımı seç</button>
+<div id="tarotResult" class="result hidden"></div>
+</div>
+<div class="card">
+<h3>☕ Kahve falı</h3>
+<label>Fincanında gördüğün şekli anlat</label>
+<textarea id="coffeeText" placeholder="Örneğin: yol, kuş, kalp..."></textarea>
+<button onclick="coffee()">Yorumla</button>
+<div id="coffeeResult" class="result hidden"></div>
+</div>
+<div class="card">
+<h3>♈ Burç yorumu</h3>
+<label>Burcunu seç</label>
+<select id="zodiac">
+<option>Koç</option><option>Boğa</option><option>İkizler</option>
+<option>Yengeç</option><option>Aslan</option><option>Başak</option>
+<option>Terazi</option><option>Akrep</option><option>Yay</option>
+<option>Oğlak</option><option>Kova</option><option>Balık</option>
+</select>
+<button onclick="zodiac()">Yorumumu gör</button>
+<div id="zodiacResult" class="result hidden"></div>
+</div>
+<div class="card">
+<h3>🌙 Rüya
